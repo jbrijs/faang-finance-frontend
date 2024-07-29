@@ -4,26 +4,29 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 export interface PredictionCardProps {
     ticker: string;
     companyName: string;
-    date: string;
-    prediction: string;
+    prediction: number;
+    previous_close: number;
 }
 
 const PredictionCard: FC<PredictionCardProps> = (props) => {
-    const {ticker, companyName, date, prediction} = props
+    const {ticker, companyName, prediction, previous_close} = props
   return (
     <>
-    <Card className="w-1/5">
+    <Card className="w-1/5 h-60">
         <CardHeader>
           <CardTitle>${ticker}</CardTitle>
           <CardDescription>
             Close Price prediction for {companyName}
           </CardDescription>
           <CardDescription>
-            {date}
+            07/28/2024
           </CardDescription>
         </CardHeader>
         <CardContent>
-            <p className="text-3xl text-green-500">${prediction}</p>
+            <div>
+                <p className={prediction > previous_close ? "text-3xl text-green-500" : "text-3xl text-red-500"}>${prediction}</p>
+                <span></span>
+            </div>
         </CardContent>
       </Card>
     </>
