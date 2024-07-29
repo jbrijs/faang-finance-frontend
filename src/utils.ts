@@ -44,4 +44,10 @@ export const testData: PredictionCardProps[] = [
         prediction: 320.45,
         previous_close: 315.00,
     },
+    {
+        ticker: "ADBE",
+        companyName: "Adobe Inc.",
+        prediction: 700.30,
+        previous_close: 690.00,
+    },
 ];
