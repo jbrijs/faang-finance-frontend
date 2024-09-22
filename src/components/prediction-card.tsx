@@ -9,6 +9,7 @@ import {
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { space } from "postcss/lib/list";
+import { Button } from "./ui/button";
 
 export interface PredictionCardProps {
   ticker: string;
@@ -42,16 +43,16 @@ const PredictionCard: FC<PredictionCardProps> = (props) => {
           <div className="flex flex-dol mb-2" >
             <CardTitle>${ticker} </CardTitle>
             {isUp ? (
-              <div className="flex flex-row gap-1 cursor-pointer" onClick={handleDeltaClick}>
+              <div className="flex flex-row gap-1 cursor-pointer items-center" onClick={handleDeltaClick}>
                 <ArrowUpwardIcon className="ml-4 text-green-500" />
                 {state.percent_view ? (
-                  <p className="text-md text-green-500">
+                  <Button className="text-md text-green-500 hover:bg-muted" variant={'ghost'}>
                     {deltaPercent.toFixed(2)}%
-                  </p>
+                  </Button>
                 ) : (
-                  <p className="text-md text-green-500">
+                  <Button className="text-md text-green-500 hover:bg-muted" variant={'ghost'}>
                     ${delta.toFixed(2)}
-                  </p>
+                  </Button>
                 )}
               </div>
             ) : (
