@@ -10,66 +10,36 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { space } from "postcss/lib/list";
 import { Button } from "./ui/button";
+import DeltaButton from "./delta-button";
 
 export interface PredictionCardProps {
   ticker: string;
   companyName: string;
   prediction: number;
   previous_close: number;
+  percentView: boolean;
 }
 
 interface PredictionCardState {
   percent_view: boolean;
 }
 
-const PredictionCard: FC<PredictionCardProps> = (props) => {
-  const { ticker, companyName, prediction, previous_close } = props;
+const PredictionCard: FC<PredictionCardProps> = ( { ticker, companyName, prediction, previous_close, percentView }) => {
+ 
   const isUp = prediction > previous_close;
   const [state, setState] = useState<PredictionCardState>({
     percent_view: true,
   });
 
-  const handleDeltaClick = () => {
-    setState((prev) => ({ percent_view: !prev.percent_view }));
-  };
-
-  const delta = Math.abs(prediction - previous_close)
-  const deltaPercent = (delta / previous_close) * 100
 
   return (
     <>
       <Card className="w-1/5 h-60 relative">
-        <CardHeader>
-          <div className="flex flex-dol mb-2" >
-            <CardTitle>${ticker} </CardTitle>
-            {isUp ? (
-              <div className="flex flex-row gap-1 cursor-pointer items-center" onClick={handleDeltaClick}>
-                <ArrowUpwardIcon className="ml-4 text-green-500" />
-                {state.percent_view ? (
-                  <Button className="text-md text-green-500 hover:bg-muted" variant={'ghost'}>
-                    {deltaPercent.toFixed(2)}%
-                  </Button>
-                ) : (
-                  <Button className="text-md text-green-500 hover:bg-muted" variant={'ghost'}>
-                    ${delta.toFixed(2)}
-                  </Button>
-                )}
-              </div>
-            ) : (
-              <div className="flex flex-row gap-1 cursor-pointer" onClick={handleDeltaClick}>
-                <ArrowDownwardIcon className="ml-4 text-red-500" />
-                {state.percent_view ? (
-                  <p className="text-md text-red-500">
-                    {deltaPercent.toFixed(2)}%
-                  </p>
-                ) : (
-                  <p className="text-md text-red-500">
-                    ${delta.toFixed(2)}
-                  </p>
-                )}
-              </div>
-            )}
-          </div>
+        <CardHeader className="w-full">
+          <CardTitle className="w-full flex flex-row justify-between items-center justify-between">{ticker} <div className="flex flex-dol mb-2" >
+            <DeltaButton trendingUp={isUp} percentView={percentView} prediction={prediction} prevClose={previous_close}/>
+          </div></CardTitle>
+          
           <CardDescription>
             Close Price prediction for {companyName}
           </CardDescription>
