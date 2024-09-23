@@ -1,5 +1,4 @@
-import ArrowUpward from "@mui/icons-material/ArrowUpward";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowUp } from "lucide-react";
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { formatMoney, formatPercentage } from "@/utils";
@@ -12,10 +11,11 @@ interface Props {
 }
 
 const DeltaButton: React.FC<Props> = ({ trendingUp, percentView, prediction, prevClose }) => {
-  const [view, setView] = useState({ view: percentView });
+  const [view, setView] = useState(percentView);
 
   const handleClick = () => {
-    setView((prev) => ({ view: prev.view }));
+    console.log('clicked')
+    setView(prev => !prev);
   };
 
   const delta = Math.abs(prediction - prevClose)
@@ -24,13 +24,13 @@ const DeltaButton: React.FC<Props> = ({ trendingUp, percentView, prediction, pre
   return (
     <Button
     variant={'ghost'}
-      onClick={() => handleClick}
+      onClick={handleClick}
       className={`flex flex-row gap-1.5 items-center justify-center hover:bg-secondary ${
         trendingUp ? "text-green-600" : "text-red-600"
       }`}
     >
-      {trendingUp ? <ArrowUpward className="h-4 w-4" /> : <ArrowDown className="h-4 w-4"/>}
-      {view ? formatPercentage(deltaPercent) : formatMoney(delta)}
+      {trendingUp ? <ArrowUp className="h-4 w-4" /> : <ArrowDown className="h-4 w-4"/>}
+      {view ? formatMoney(delta) : formatPercentage(deltaPercent) }
     </Button>
   );
 };

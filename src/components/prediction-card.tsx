@@ -27,10 +27,6 @@ interface PredictionCardState {
 const PredictionCard: FC<PredictionCardProps> = ( { ticker, companyName, prediction, previous_close, percentView }) => {
  
   const isUp = prediction > previous_close;
-  const [state, setState] = useState<PredictionCardState>({
-    percent_view: true,
-  });
-
 
   return (
     <>
