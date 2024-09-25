@@ -6,10 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import { space } from "postcss/lib/list";
-import { Button } from "./ui/button";
+
 import DeltaButton from "./delta-button";
 
 export interface PredictionCardProps {
@@ -29,7 +26,7 @@ const PredictionCard: FC<PredictionCardProps> = ( { ticker, companyName, predict
   const isUp = prediction > previous_close;
 
   return (
-    <>
+  
       <Card className="w-1/5 h-60 relative">
         <CardHeader className="w-full">
           <CardTitle className="w-full flex flex-row justify-between items-center justify-between">{ticker} <div className="flex flex-dol mb-2" >
@@ -53,7 +50,7 @@ const PredictionCard: FC<PredictionCardProps> = ( { ticker, companyName, predict
           </div>
         </CardContent>
       </Card>
-    </>
+    
   );
 };
 
