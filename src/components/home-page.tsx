@@ -11,7 +11,7 @@ export function HomePage() {
     <>
       <div className="m-8">
         <h1 className="text-4xl">Todays Predictions</h1>
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start gap-4 pt-10">
           <div className="flex flex-row items-center space-x-2 w-full">
             <Switch
               id="delta-view"

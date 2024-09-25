@@ -26,45 +26,29 @@ function navbar() {
   return (
     <Menubar className="rounded-none border-x-0 h-14">
       <div className="flex flex-row justify-between w-full mx-10">
-        <div className="flex flex-row gap-10">
+        <div className="flex flex-row items-center gap-10">
           <MenubarMenu>
             <MenubarTrigger className="text-md">Predictions</MenubarTrigger>
             <MenubarContent>
               {companies.map((company) => (
                 <MenubarItem key={company}>{company}</MenubarItem>
               ))}
-              <MenubarSeparator/>
-              <MenubarItem>
-                All Companies
-              </MenubarItem>
+              <MenubarSeparator />
+              <MenubarItem>All Companies</MenubarItem>
             </MenubarContent>
           </MenubarMenu>
-          <MenubarMenu>
-            <MenubarTrigger className="text-md">
-              Project Description
-            </MenubarTrigger>
-            <MenubarContent>
-            {companies.map((company) => (
-                <MenubarItem key={company}>{company}</MenubarItem>
-              ))}
-              <MenubarSeparator/>
-              <MenubarItem>
-                All Companies
-              </MenubarItem>
-            </MenubarContent>
-          </MenubarMenu>
+
           <MenubarMenu>
             <MenubarTrigger className="text-md">Historical Data</MenubarTrigger>
             <MenubarContent>
-            {companies.map((company) => (
+              {companies.map((company) => (
                 <MenubarItem key={company}>{company}</MenubarItem>
               ))}
-              <MenubarSeparator/>
-              <MenubarItem>
-                All Companies
-              </MenubarItem>
+              <MenubarSeparator />
+              <MenubarItem>All Companies</MenubarItem>
             </MenubarContent>
           </MenubarMenu>
+          <p className="font-medium hover:cursor-default rounded px-2.5 py-1.5 active:bg-muted transition-all duration-200 ease-out" onClick={()=> {}}>Project Description</p>
         </div>
         <ModeToggle />
       </div>
