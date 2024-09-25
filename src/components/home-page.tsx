@@ -23,7 +23,7 @@ export function HomePage() {
             />
             <Label htmlFor="delta-view">Show delta as %</Label>
           </div>
-          <div className="flex flex-row flex-wrap items-center justify-center gap-4 pt-10 w-full">
+          <div className="sm:grid grid-cols-4 grid-rows-2 w-full gap-2 flex flex-col">
             {testData.map((data, index) => (
               <PredictionCard
                 percentView={deltaAsPercent}
