@@ -10,6 +10,7 @@ import {
 
 import React from "react";
 import { ModeToggle } from "./mode-toggle";
+import { useNavigate } from "react-router-dom";
 
 const companies = [
   "Adobe",
@@ -23,6 +24,11 @@ const companies = [
 ];
 
 function navbar() {
+  const navigate = useNavigate()
+
+  const handleProjectDescriptionClick = () => {
+    navigate('/project-description')
+  }
   return (
     <Menubar className="rounded-none border-x-0 h-14">
       <div className="flex flex-row justify-between w-full mx-10">
@@ -48,7 +54,7 @@ function navbar() {
               <MenubarItem>All Companies</MenubarItem>
             </MenubarContent>
           </MenubarMenu>
-          <p className="font-medium hover:cursor-default rounded px-2.5 py-1.5 active:bg-muted transition-all duration-200 ease-out" onClick={()=> {}}>Project Description</p>
+          <p className="font-medium hover:cursor-default rounded px-2.5 py-1.5 active:bg-muted transition-all duration-200 ease-out" onClick={handleProjectDescriptionClick}>Project Description</p>
         </div>
         <ModeToggle />
       </div>
