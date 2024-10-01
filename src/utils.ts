@@ -61,3 +61,26 @@ export const formatPercentage = (value: number): string => {
     maximumFractionDigits: 2,
   });
 };
+
+export const tickerToCompanyName = (ticker: string): string => {
+  switch (ticker) {
+    case "AAPL":
+      return "Apple Inc.";
+    case "GOOGL":
+      return "Alphabet Inc.";
+    case "META":
+      return "Meta Platforms Inc.";
+    case "NFLX":
+      return "Netflix Inc.";
+    case "AMZN":
+      return "Amazon.com Inc.";
+    case "NVDA":
+      return "NVIDIA Corporation";
+    case "MSFT":
+      return "Microsoft Corporation";
+    case "ADBE":
+      return "Adobe Inc.";
+    default:
+      return "Unknown Ticker";
+  }
+};

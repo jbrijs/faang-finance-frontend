@@ -1,8 +1,10 @@
 import axios from "axios";
+import { PredictionDataResponse, PredictionsResponse } from "./model";
 
 export class Service {
-    
-  static async getPredictionData(ticker: string) {
+  static async getPredictionData(
+    ticker: string
+  ): Promise<PredictionDataResponse[] | null> {
     try {
       const response = await axios.get(
         `https://sjzd3k5cji.execute-api.us-west-1.amazonaws.com/prod/data/${ticker}`
@@ -10,11 +12,11 @@ export class Service {
       return response.data;
     } catch (error: any) {
       console.error("Error fetching prediction data:", error);
-      return error.response ? error.response.data : error.message;
+      return null;
     }
   }
 
-  static async getPredictions() {
+  static async getPredictions(): Promise<PredictionsResponse[] | null> {
     try {
       const response = await axios.get(
         "https://sjzd3k5cji.execute-api.us-west-1.amazonaws.com/prod/predictions"
@@ -22,7 +24,7 @@ export class Service {
       return response.data;
     } catch (error: any) {
       console.error("Error fetching predictions:", error);
-      return error.response ? error.response.data : error.message;
+      return null
     }
   }
 }

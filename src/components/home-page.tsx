@@ -1,11 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PredictionCard from "./prediction-card";
-import { testData } from "../utils";
+import { testData, tickerToCompanyName } from "../utils";
 import { Switch } from "./ui/switch";
 import { Label } from "./ui/label";
+import { Service } from "@/services/services";
+import { PredictionsResponse } from "@/services/model";
 
 export function HomePage() {
   const [deltaAsPercent, setDeltaAsPercent] = useState(false);
+  const [predictions, setPredictions] = useState<PredictionsResponse[] | undefined>(undefined)
+
+  useEffect(() => {
+    const getPredictions = async () => {
+      const response = await Service.getPredictions();
+      if (response) {
+        setPredictions(response)
+      }
+    };
+    getPredictions()
+  }, [])
+
   return (
     <>
       <div className="m-8">
@@ -28,14 +42,14 @@ export function HomePage() {
             )}
           </div>
           <div className="md:grid grid-cols-4 grid-rows-2 w-full gap-2 flex flex-col">
-            {testData.map((data, index) => (
+            {predictions && predictions.map((data, index) => (
               <PredictionCard
                 percentView={deltaAsPercent}
                 key={index}
                 ticker={data.ticker}
-                companyName={data.companyName}
+                companyName={tickerToCompanyName(data.ticker)}
                 prediction={data.prediction}
-                previous_close={data.previous_close}
+                previous_close={data.prevClose}
               />
             ))}
           </div>
