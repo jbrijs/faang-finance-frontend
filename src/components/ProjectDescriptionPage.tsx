@@ -1,5 +1,3 @@
-import React from "react";
-
 const ProjectDescriptionPage = () => {
   return (
     <div className="flex flex-row items-center justify-center w-full overflow-y-auto">

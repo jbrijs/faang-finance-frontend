@@ -15,15 +15,14 @@ const DeltaButton: React.FC<Props> = ({ trendingUp, percentView, prediction, pre
     const deltaPercent = delta / prevClose;
   
     return (
-      <Button
-        variant={'ghost'}
-        className={`flex flex-row gap-1.5 items-center justify-center hover:bg-secondary ${
+      <p
+        className={`text-sm flex flex-row gap-1.5 items-center justify-center  ${
           trendingUp ? "text-green-600" : "text-red-600"
         }`}
       >
         {trendingUp ? <ArrowUp className="h-4 w-4" /> : <ArrowDown className="h-4 w-4" />}
         {percentView ? formatMoney(delta) : formatPercentage(deltaPercent)}
-      </Button>
+      </p>
     );
   };
   

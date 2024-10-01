@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PredictionCard from "./prediction-card";
 import { testData } from "../utils";
-import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
 import { Switch } from "./ui/switch";
 import { Label } from "./ui/label";
 
@@ -21,9 +20,14 @@ export function HomePage() {
                 setDeltaAsPercent(value);
               }}
             />
-            <Label htmlFor="delta-view">Show delta as %</Label>
+            {deltaAsPercent && (
+              <Label htmlFor="delta-view">Show delta as %</Label>
+            )}
+            {!deltaAsPercent && (
+              <Label htmlFor="delta-view">Show delta as $</Label>
+            )}
           </div>
-          <div className="sm:grid grid-cols-4 grid-rows-2 w-full gap-2 flex flex-col">
+          <div className="md:grid grid-cols-4 grid-rows-2 w-full gap-2 flex flex-col">
             {testData.map((data, index) => (
               <PredictionCard
                 percentView={deltaAsPercent}
