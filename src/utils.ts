@@ -1,4 +1,3 @@
-
 export const testData = [
   {
     ticker: "AAPL",
@@ -82,5 +81,20 @@ export const tickerToCompanyName = (ticker: string): string => {
       return "Adobe Inc.";
     default:
       return "Unknown Ticker";
+  }
+};
+
+export const getPredictionDay = () => {
+  const date = new Date();
+  switch (date.getDay()) {
+    case 5:
+      date.setDate(date.getDate() + 3);
+      return date;
+    case 6:
+      date.setDate(date.getDate() + 2);
+      return date;
+    default:
+      date.setDate(date.getDate() + 1);
+      return date;
   }
 };

@@ -42,14 +42,14 @@ export function HomePage() {
             )}
           </div>
           <div className="md:grid grid-cols-4 grid-rows-2 w-full gap-2 flex flex-col">
-            {predictions && predictions.map((data, index) => (
+            {testData && testData.map((data, index) => (
               <PredictionCard
                 percentView={deltaAsPercent}
                 key={index}
                 ticker={data.ticker}
                 companyName={tickerToCompanyName(data.ticker)}
                 prediction={data.prediction}
-                previous_close={data.prevClose}
+                previous_close={data.previous_close}
               />
             ))}
           </div>

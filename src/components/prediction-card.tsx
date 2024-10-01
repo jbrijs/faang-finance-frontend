@@ -8,6 +8,7 @@ import {
 } from "./ui/card";
 
 import DeltaButton from "./delta-button";
+import { getPredictionDay } from "@/utils";
 
 export interface PredictionCardProps {
   ticker: string;
@@ -17,36 +18,45 @@ export interface PredictionCardProps {
   percentView: boolean;
 }
 
+const PredictionCard: FC<PredictionCardProps> = ({
+  ticker,
+  companyName,
+  prediction,
+  previous_close,
+  percentView,
+}) => {
+  const date = new Date();
 
-
-const PredictionCard: FC<PredictionCardProps> = ( { ticker, companyName, prediction, previous_close, percentView }) => {
- 
   const isUp = prediction > previous_close;
 
   return (
-  
-      <Card className="sm:col-span-1 sm:row-span-2 w-full">
-        <CardHeader className="w-full">
-          <CardTitle className="w-full flex flex-row items-center justify-between">{ticker} <div className="flex flex-dol mb-2" >
-            <DeltaButton trendingUp={isUp} percentView={percentView} prediction={prediction} prevClose={previous_close}/>
-          </div></CardTitle>
-          
-          <CardDescription>
-            Close Price prediction for {companyName}
-          </CardDescription>
-          <CardDescription>07/28/2024</CardDescription>
-        </CardHeader>
-        <CardContent>
-            <p
-              className={
-                isUp ? "text-3xl text-green-500" : "text-3xl text-red-500"
-              }
-            >
-              ${prediction}
-            </p>
-        </CardContent>
-      </Card>
-    
+    <Card className="sm:col-span-1 sm:row-span-2 w-full">
+      <CardHeader className="w-full">
+        <CardTitle className="w-full flex flex-row items-center justify-between">
+          {ticker}{" "}
+          <div className="flex flex-dol mb-2">
+            <DeltaButton
+              trendingUp={isUp}
+              percentView={percentView}
+              prediction={prediction}
+              prevClose={previous_close}
+            />
+          </div>
+        </CardTitle>
+
+        <CardDescription>
+          Predicted close price for {companyName} on{" "}
+          {getPredictionDay().toDateString()}.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p
+          className={isUp ? "text-3xl text-green-500" : "text-3xl text-red-500"}
+        >
+          ${prediction}
+        </p>
+      </CardContent>
+    </Card>
   );
 };
 
