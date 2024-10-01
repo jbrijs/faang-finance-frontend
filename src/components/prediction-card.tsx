@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC } from "react";
 import {
   Card,
   CardContent,
@@ -17,9 +17,7 @@ export interface PredictionCardProps {
   percentView: boolean;
 }
 
-interface PredictionCardState {
-  percent_view: boolean;
-}
+
 
 const PredictionCard: FC<PredictionCardProps> = ( { ticker, companyName, prediction, previous_close, percentView }) => {
  
@@ -29,7 +27,7 @@ const PredictionCard: FC<PredictionCardProps> = ( { ticker, companyName, predict
   
       <Card className="sm:col-span-1 sm:row-span-2 w-full">
         <CardHeader className="w-full">
-          <CardTitle className="w-full flex flex-row justify-between items-center justify-between">{ticker} <div className="flex flex-dol mb-2" >
+          <CardTitle className="w-full flex flex-row items-center justify-between">{ticker} <div className="flex flex-dol mb-2" >
             <DeltaButton trendingUp={isUp} percentView={percentView} prediction={prediction} prevClose={previous_close}/>
           </div></CardTitle>
           

@@ -4,11 +4,9 @@ import {
   MenubarItem,
   MenubarMenu,
   MenubarSeparator,
-  MenubarShortcut,
   MenubarTrigger,
 } from "@/components/ui/menubar";
 
-import React from "react";
 import { ModeToggle } from "./mode-toggle";
 import { useNavigate } from "react-router-dom";
 

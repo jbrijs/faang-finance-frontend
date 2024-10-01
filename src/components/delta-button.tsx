@@ -1,6 +1,4 @@
 import { ArrowDown, ArrowUp } from "lucide-react";
-import React, { useState } from "react";
-import { Button } from "./ui/button";
 import { formatMoney, formatPercentage } from "@/utils";
 
 interface Props {
