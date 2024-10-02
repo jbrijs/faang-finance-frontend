@@ -1,25 +1,27 @@
 import { useEffect, useState } from "react";
-import PredictionCard from "./prediction-card";
-import { testData, tickerToCompanyName } from "../utils";
-import { Switch } from "./ui/switch";
-import { Label } from "./ui/label";
+import PredictionCard from "../../components/prediction-card";
+import { testData, tickerToCompanyName } from "../../utils";
+import { Switch } from "../../components/ui/switch";
+import { Label } from "../../components/ui/label";
 import { Service } from "@/services/services";
 import { PredictionsResponse } from "@/services/model";
 
 export function HomePage() {
   const [deltaAsPercent, setDeltaAsPercent] = useState(false);
-  const [predictions, setPredictions] = useState<PredictionsResponse[] | undefined>(undefined)
+  const [predictions, setPredictions] = useState<
+    PredictionsResponse[] | undefined
+  >(undefined);
 
   useEffect(() => {
     const getPredictions = async () => {
       const response = await Service.getPredictions();
       if (response) {
-        setPredictions(response)
-        console.log(response)
+        setPredictions(response);
+        console.log(response);
       }
     };
-    getPredictions()
-  }, [])
+    getPredictions();
+  }, []);
 
   return (
     <>
@@ -43,16 +45,17 @@ export function HomePage() {
             )}
           </div>
           <div className="md:grid grid-cols-4 grid-rows-2 w-full md:gap-4 gap-2 flex flex-col">
-            {predictions && predictions.map((data, index) => (
-              <PredictionCard
-                percentView={deltaAsPercent}
-                key={index}
-                ticker={data.ticker}
-                companyName={tickerToCompanyName(data.ticker)}
-                prediction={data.prediction}
-                previous_close={data.prevClose}
-              />
-            ))}
+            {predictions &&
+              predictions.map((data, index) => (
+                <PredictionCard
+                  percentView={deltaAsPercent}
+                  key={index}
+                  ticker={data.ticker}
+                  companyName={tickerToCompanyName(data.ticker)}
+                  prediction={data.prediction}
+                  previous_close={data.prevClose}
+                />
+              ))}
           </div>
         </div>
       </div>
