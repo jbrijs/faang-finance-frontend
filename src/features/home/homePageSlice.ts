@@ -1,14 +1,14 @@
 import { PredictionsResponse } from '@/services/model';
 import { createSlice } from '@reduxjs/toolkit'
 
-interface State {
+export interface HomePageState {
     loading: boolean;
     error: string | undefined;
     predictions: PredictionsResponse[] | undefined;
     deltaAsPercent: boolean;
 }
 
-const initialState: State = {
+const initialState: HomePageState = {
     loading: false,
     error: undefined,
     predictions: undefined,
