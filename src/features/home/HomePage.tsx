@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import { switchDelta } from "./homePageSlice";
 import { useAppDispatch } from "@/app/hooks";
+import { fetchPredictions } from "./thunks";
 
 export function HomePage() {
   // const [deltaAsPercent, setDeltaAsPercent] = useState(false);
@@ -23,15 +24,11 @@ export function HomePage() {
   );
 
   useEffect(() => {
-    const getPredictions = async () => {
-      const response = await Service.getPredictions();
-      if (response) {
-        setPredictions(response);
-        console.log(response);
-      }
-    };
-    getPredictions();
-  }, []);
+    if (!predictions) {
+      dispatch(fetchPredictions())
+    }
+  }, [dispatch])
+    
 
   return (
     <>
