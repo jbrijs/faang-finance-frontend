@@ -1,8 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import homePageReducer from '../features/home/homePageSlice'
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     homePage: homePageReducer
   },
 })
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+export default store;
