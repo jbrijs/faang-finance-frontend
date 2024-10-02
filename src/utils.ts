@@ -98,3 +98,4 @@ export const getPredictionDay = () => {
       return date;
   }
 };
+

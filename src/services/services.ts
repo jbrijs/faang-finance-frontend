@@ -9,6 +9,8 @@ export class Service {
       const response = await axios.get(
         `https://sjzd3k5cji.execute-api.us-west-1.amazonaws.com/prod/data/${ticker}`
       );
+      console.log('data')
+      console.log(response.data)
       return response.data;
     } catch (error: any) {
       console.error("Error fetching prediction data:", error);

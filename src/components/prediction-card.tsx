@@ -8,7 +8,7 @@ import {
 } from "./ui/card";
 
 import DeltaButton from "./delta-button";
-import { getPredictionDay } from "@/utils";
+import { formatMoney, getPredictionDay } from "@/utils";
 
 export interface PredictionCardProps {
   ticker: string;
@@ -52,7 +52,7 @@ const PredictionCard: FC<PredictionCardProps> = ({
         <p
           className={isUp ? "text-4xl text-green-500" : "text-4xl text-red-500"}
         >
-          ${prediction}
+          {formatMoney(prediction)}
         </p>
       </CardContent>
     </Card>

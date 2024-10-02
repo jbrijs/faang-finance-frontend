@@ -15,6 +15,7 @@ export function HomePage() {
       const response = await Service.getPredictions();
       if (response) {
         setPredictions(response)
+        console.log(response)
       }
     };
     getPredictions()
@@ -42,14 +43,14 @@ export function HomePage() {
             )}
           </div>
           <div className="md:grid grid-cols-4 grid-rows-2 w-full md:gap-4 gap-2 flex flex-col">
-            {testData && testData.map((data, index) => (
+            {predictions && predictions.map((data, index) => (
               <PredictionCard
                 percentView={deltaAsPercent}
                 key={index}
                 ticker={data.ticker}
                 companyName={tickerToCompanyName(data.ticker)}
                 prediction={data.prediction}
-                previous_close={data.previous_close}
+                previous_close={data.prevClose}
               />
             ))}
           </div>
