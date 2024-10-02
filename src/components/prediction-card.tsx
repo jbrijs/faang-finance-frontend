@@ -25,7 +25,6 @@ const PredictionCard: FC<PredictionCardProps> = ({
   previous_close,
   percentView,
 }) => {
-  const date = new Date();
 
   const isUp = prediction > previous_close;
 
@@ -49,9 +48,9 @@ const PredictionCard: FC<PredictionCardProps> = ({
           {getPredictionDay().toDateString()}.
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col h-36 w-full justify-end">
         <p
-          className={isUp ? "text-3xl text-green-500" : "text-3xl text-red-500"}
+          className={isUp ? "text-4xl text-green-500" : "text-4xl text-red-500"}
         >
           ${prediction}
         </p>
