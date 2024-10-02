@@ -43,9 +43,8 @@ function navbar() {
             <MenubarTrigger className="text-md">Historical Data</MenubarTrigger>
             <MenubarContent>
               {companies.map((company) => (
-                <MenubarItem key={company}>{company}</MenubarItem>
+                <MenubarItem key={company} onClick={() => navigate(`/data/${company}`)}>{company}</MenubarItem>
               ))}
-              <MenubarSeparator />
             </MenubarContent>
           </MenubarMenu>
           <p
