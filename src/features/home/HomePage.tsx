@@ -5,12 +5,22 @@ import { Switch } from "../../components/ui/switch";
 import { Label } from "../../components/ui/label";
 import { Service } from "@/services/services";
 import { PredictionsResponse } from "@/services/model";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/store";
+import { switchDelta } from "./homePageSlice";
+import { useAppDispatch } from "@/app/hooks";
 
 export function HomePage() {
-  const [deltaAsPercent, setDeltaAsPercent] = useState(false);
-  const [predictions, setPredictions] = useState<
-    PredictionsResponse[] | undefined
-  >(undefined);
+  // const [deltaAsPercent, setDeltaAsPercent] = useState(false);
+  // const [predictions, setPredictions] = useState<
+  //   PredictionsResponse[] | undefined
+  // >(undefined);
+
+  const dispatch = useAppDispatch();
+
+  const { predictions, loading, error, deltaAsDollar } = useSelector(
+    (state: RootState) => state.homePage
+  );
 
   useEffect(() => {
     const getPredictions = async () => {
@@ -31,16 +41,13 @@ export function HomePage() {
           <div className="flex flex-row items-center space-x-2 w-full">
             <Switch
               id="delta-view"
-              checked={deltaAsPercent}
-              onCheckedChange={(value) => {
-                console.log(value);
-                setDeltaAsPercent(value);
-              }}
+              checked={deltaAsDollar}
+              onCheckedChange={() => dispatch(switchDelta())}
             />
-            {deltaAsPercent && (
+            {deltaAsDollar && (
               <Label htmlFor="delta-view">Show delta as %</Label>
             )}
-            {!deltaAsPercent && (
+            {!deltaAsDollar && (
               <Label htmlFor="delta-view">Show delta as $</Label>
             )}
           </div>
@@ -48,7 +55,7 @@ export function HomePage() {
             {predictions &&
               predictions.map((data, index) => (
                 <PredictionCard
-                  percentView={deltaAsPercent}
+                  percentView={deltaAsDollar}
                   key={index}
                   ticker={data.ticker}
                   companyName={tickerToCompanyName(data.ticker)}

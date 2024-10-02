@@ -1,32 +1,31 @@
-import { PredictionsResponse } from '@/services/model';
-import { createSlice } from '@reduxjs/toolkit'
+import { PredictionsResponse } from "@/services/model";
+import { createSlice } from "@reduxjs/toolkit";
 
 export interface HomePageState {
-    loading: boolean;
-    error: string | undefined;
-    predictions: PredictionsResponse[] | undefined;
-    deltaAsPercent: boolean;
+  loading: boolean;
+  error: string | undefined;
+  predictions: PredictionsResponse[] | undefined;
+  deltaAsDollar: boolean;
 }
 
 const initialState: HomePageState = {
-    loading: false,
-    error: undefined,
-    predictions: undefined,
-    deltaAsPercent: true
-}
+  loading: false,
+  error: undefined,
+  predictions: undefined,
+  deltaAsDollar: false,
+};
 
 export const homePage = createSlice({
-  name: 'homePage',
+  name: "homePage",
   initialState,
   reducers: {
     switchDelta: (state) => {
-     
-      state.deltaAsPercent = !state.deltaAsPercent
-    }
+      state.deltaAsDollar = !state.deltaAsDollar;
+    },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { switchDelta } = homePage.actions
+export const { switchDelta } = homePage.actions;
 
-export default homePage.reducer
+export default homePage.reducer;
