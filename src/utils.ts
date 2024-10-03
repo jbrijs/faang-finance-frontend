@@ -50,17 +50,18 @@ export const testData = [
 ];
 
 export const testChartData = [
-  { prediction: 3, actual: 4 },
-  { prediction: 5, actual: 6 },
-  { prediction: 2, actual: 3 },
-  { prediction: 7, actual: 5 },
-  { prediction: 4, actual: 4 },
-  { prediction: 6, actual: 8 },
-  { prediction: 8, actual: 9 },
-  { prediction: 5, actual: 7 },
-  { prediction: 3, actual: 2 },
-  { prediction: 4, actual: 5 },
+  { prediction: 3, actual: 4, timeStamp: "2024-09-24" },
+  { prediction: 5, actual: 6, timeStamp: "2024-09-25" },
+  { prediction: 2, actual: 3, timeStamp: "2024-09-26" },
+  { prediction: 7, actual: 5, timeStamp: "2024-09-27" },
+  { prediction: 4, actual: 4, timeStamp: "2024-09-28" },
+  { prediction: 6, actual: 8, timeStamp: "2024-09-29" },
+  { prediction: 8, actual: 9, timeStamp: "2024-09-30" },
+  { prediction: 5, actual: 7, timeStamp: "2024-10-01" },
+  { prediction: 3, actual: 2, timeStamp: "2024-10-02" },
+  { prediction: 4, actual: 5, timeStamp: "2024-10-03" },
 ];
+
 
 export const formatMoney = (value: number): string => {
   return value.toLocaleString("en-US", { style: "currency", currency: "USD" });

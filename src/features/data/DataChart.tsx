@@ -1,12 +1,9 @@
-import React from "react";
-import { TrendingUp } from "lucide-react";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -16,53 +13,77 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart.tsx";
+import { formatMoney, testChartData } from "@/utils";
 
-const DataChart = () => {
+interface Props {
+  ticker: string;
+  company: string;
+}
+
+const DataChart: React.FC<Props> = ({ ticker, company }) => {
   const chartConfig = {
-    desktop: {
-      label: "Desktop",
+    prediction: {
+      label: "Predicted Close Price",
       color: "hsl(var(--chart-1))",
     },
-    mobile: {
-      label: "Mobile",
+    actual: {
+      label: "Actual Close Price",
       color: "hsl(var(--chart-2))",
     },
   } satisfies ChartConfig;
 
   return (
-    <Card>
+    <Card className="h-3/4 w-3/4">
       <CardHeader>
-        <CardTitle>Bar Chart - Multiple</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>{ticker} Model Prediction vs Actual</CardTitle>
+        <CardDescription>
+          Close price predictions compared to actual close price for {company}{" "}
+          from {testChartData[0].timeStamp} -{" "}
+          {testChartData[testChartData.length - 1].timeStamp}
+        </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="h-3/4">
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
+          <LineChart
+            accessibilityLayer
+            data={testChartData}
+            margin={{
+              left: 12,
+              right: 20,
+              bottom: 20
+            }}
+          >
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="month"
+              dataKey="timeStamp"
               tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
+              axisLine={true}
+              tickMargin={24}
+              angle={-60}
+              tickFormatter={(value) => value.slice(5)}
             />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
+            <YAxis
+            axisLine={false}
+            tickMargin={8}
+            tickFormatter={(value) => formatMoney(value)}/>
+            <ChartTooltip cursor={true} content={<ChartTooltipContent />} />
+            <Line
+              dataKey="prediction"
+              type="monotone"
+              stroke="var(--color-prediction)"
+              strokeWidth={6}
+              dot={true}
             />
-            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-            <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-          </BarChart>
+            <Line
+              dataKey="actual"
+              type="monotone"
+              stroke="var(--color-actual)"
+              strokeWidth={6}
+              dot={true}
+            />
+          </LineChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
-        </div>
-      </CardFooter>
     </Card>
   );
 };
