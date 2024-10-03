@@ -49,6 +49,19 @@ export const testData = [
   },
 ];
 
+export const testChartData = [
+  { prediction: 3, actual: 4 },
+  { prediction: 5, actual: 6 },
+  { prediction: 2, actual: 3 },
+  { prediction: 7, actual: 5 },
+  { prediction: 4, actual: 4 },
+  { prediction: 6, actual: 8 },
+  { prediction: 8, actual: 9 },
+  { prediction: 5, actual: 7 },
+  { prediction: 3, actual: 2 },
+  { prediction: 4, actual: 5 },
+];
+
 export const formatMoney = (value: number): string => {
   return value.toLocaleString("en-US", { style: "currency", currency: "USD" });
 };
@@ -98,4 +111,3 @@ export const getPredictionDay = () => {
       return date;
   }
 };
-

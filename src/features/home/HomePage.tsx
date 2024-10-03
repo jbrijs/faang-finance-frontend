@@ -1,17 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import PredictionCard from "../../components/prediction-card";
-import { testData, tickerToCompanyName } from "../../utils";
+import { tickerToCompanyName } from "../../utils";
 import { Switch } from "../../components/ui/switch";
 import { Label } from "../../components/ui/label";
-import { Service } from "@/services/services";
-import { PredictionsResponse } from "@/services/model";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import { switchDelta } from "./homePageSlice";
 import { useAppDispatch } from "@/app/hooks";
 import { fetchPredictions } from "./thunks";
-import { Divide } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
 import SkeletonCard from "./SkeletonCard";
 
 export function HomePage() {
@@ -30,13 +26,6 @@ export function HomePage() {
   useEffect(() => {
     console.log(loading);
   }, []);
-
-  const loadingContent = [...Array(8)].map((_, i) => (
-    <Skeleton
-      key={i}
-      className="sm:col-span-1 sm:row-span-2 w-full h-44 border-slate-400"
-    ></Skeleton>
-  ));
 
   return (
     <>

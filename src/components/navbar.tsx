@@ -10,16 +10,17 @@ import {
 import { ModeToggle } from "./mode-toggle";
 import { useNavigate } from "react-router-dom";
 
-const companies = [
-  "Adobe",
-  "Amazon",
-  "Apple",
-  "Google",
-  "Meta",
-  "Microsoft",
-  "Netflix",
-  "Nvidia",
-];
+const companies = new Map([
+  ["Adobe", "ADBE"],
+  ["Amazon", "AMZN"],
+  ["Apple", "AAPL"],
+  ["Google", "GOOG"],
+  ["Meta", "META"],
+  ["Microsoft", "MSFT"],
+  ["Netflix", "NFLX"],
+  ["Nvidia", "NVDA"],
+]);
+
 
 function navbar() {
   const navigate = useNavigate();
@@ -42,8 +43,8 @@ function navbar() {
           <MenubarMenu>
             <MenubarTrigger className="text-md">Historical Data</MenubarTrigger>
             <MenubarContent>
-              {companies.map((company) => (
-                <MenubarItem key={company} onClick={() => navigate(`/data/${company}`)}>{company}</MenubarItem>
+              {Array.from(companies.keys()).map((company) => (
+                <MenubarItem key={company} onClick={() => navigate(`/data/${companies.get(company)}`)}>{company}</MenubarItem>
               ))}
             </MenubarContent>
           </MenubarMenu>
