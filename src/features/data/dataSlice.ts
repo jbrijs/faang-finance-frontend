@@ -1,5 +1,6 @@
 import { PredictionDataResponse } from "@/services/model";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { fetchPredictionData } from "./thunk";
 
 export interface DataState {
   loading: boolean;
@@ -12,20 +13,35 @@ const initialState: DataState = {
   loading: true,
   error: null,
   data: null,
-  ticker: null
+  ticker: null,
 };
 
 export const dataPage = createSlice({
   name: "dataPage",
   initialState,
   reducers: {
-    setString: (state, action) => {
-        state.ticker = action.payload
-    }
+    setTicker: (state, action) => {
+      state.ticker = action.payload;
+    },
   },
   extraReducers(builder) {
-    builder.addCase()
-  }
+    builder
+      .addCase(fetchPredictionData.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchPredictionData.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(
+        fetchPredictionData.rejected,
+        (state, action: PayloadAction<any>) => {
+          state.loading = false;
+          state.error = action.payload;
+        }
+      );
+  },
 });
 
+export const { setTicker } = dataPage.actions;
 export default dataPage.reducer;

@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         element: <ProjectDescriptionPage />,
       },
       {
-        path: "data/:ticker",
+        path: "data/:paramTicker",
         element: <DataPage />,
       },
     ],
