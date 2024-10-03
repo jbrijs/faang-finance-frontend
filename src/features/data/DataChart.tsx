@@ -13,14 +13,16 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart.tsx";
-import { formatMoney, testChartData } from "@/utils";
+import { formatMoney } from "@/utils";
+import { PredictionDataResponse } from "@/services/model";
 
 interface Props {
   ticker: string;
   company: string;
+  data: PredictionDataResponse[];
 }
 
-const DataChart: React.FC<Props> = ({ ticker, company }) => {
+const DataChart: React.FC<Props> = ({ ticker, company, data }) => {
   const chartConfig = {
     prediction: {
       label: "Predicted Close Price",
@@ -35,20 +37,20 @@ const DataChart: React.FC<Props> = ({ ticker, company }) => {
   return (
     <Card className="h-3/4 w-3/4">
       <CardHeader>
-        <CardTitle>{ticker}: Model Prediction vs Actual</CardTitle>
+        <CardTitle>{ticker} - Prediction vs Actual</CardTitle>
         <CardDescription>
-          Close price predictions compared to actual close price for {company}.
+          Close price predictions compared to actual close price for {company}
         </CardDescription>
         <CardDescription>
-         {testChartData[0].timeStamp} to{" "}
-          {testChartData[testChartData.length - 1].timeStamp}
+         {} to{" "}
+          {}
         </CardDescription>
       </CardHeader>
       <CardContent className="h-3/4">
         <ChartContainer config={chartConfig}>
           <LineChart
             accessibilityLayer
-            data={testChartData}
+            data={data}
             margin={{
               left: 12,
               right: 20,
