@@ -35,10 +35,12 @@ const DataChart: React.FC<Props> = ({ ticker, company }) => {
   return (
     <Card className="h-3/4 w-3/4">
       <CardHeader>
-        <CardTitle>{ticker} Model Prediction vs Actual</CardTitle>
+        <CardTitle>{ticker}: Model Prediction vs Actual</CardTitle>
         <CardDescription>
-          Close price predictions compared to actual close price for {company}{" "}
-          from {testChartData[0].timeStamp} -{" "}
+          Close price predictions compared to actual close price for {company}.
+        </CardDescription>
+        <CardDescription>
+         {testChartData[0].timeStamp} to{" "}
           {testChartData[testChartData.length - 1].timeStamp}
         </CardDescription>
       </CardHeader>
@@ -50,7 +52,7 @@ const DataChart: React.FC<Props> = ({ ticker, company }) => {
             margin={{
               left: 12,
               right: 20,
-              bottom: 20
+              bottom: 20,
             }}
           >
             <CartesianGrid vertical={false} />
@@ -63,9 +65,10 @@ const DataChart: React.FC<Props> = ({ ticker, company }) => {
               tickFormatter={(value) => value.slice(5)}
             />
             <YAxis
-            axisLine={false}
-            tickMargin={8}
-            tickFormatter={(value) => formatMoney(value)}/>
+              axisLine={false}
+              tickMargin={8}
+              tickFormatter={(value) => formatMoney(value)}
+            />
             <ChartTooltip cursor={true} content={<ChartTooltipContent />} />
             <Line
               dataKey="prediction"
