@@ -10,7 +10,7 @@ export interface HomePageState {
 }
 
 const initialState: HomePageState = {
-  loading: false,
+  loading: true,
   error: null,
   predictions: null,
   deltaAsDollar: false,

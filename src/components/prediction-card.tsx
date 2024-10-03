@@ -29,11 +29,11 @@ const PredictionCard: FC<PredictionCardProps> = ({
   const isUp = prediction > previous_close;
 
   return (
-    <Card className="sm:col-span-1 sm:row-span-2 w-full">
+    <Card className="sm:col-span-1 sm:row-span-1 w-full">
       <CardHeader className="w-full">
         <CardTitle className="w-full flex flex-row items-center justify-between">
           {ticker}{" "}
-          <div className="flex flex-dol mb-2">
+          <div className="flex  mb-2">
             <DeltaButton
               trendingUp={isUp}
               percentView={percentView}

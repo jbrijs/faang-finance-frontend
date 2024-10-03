@@ -10,13 +10,11 @@ import { RootState } from "@/app/store";
 import { switchDelta } from "./homePageSlice";
 import { useAppDispatch } from "@/app/hooks";
 import { fetchPredictions } from "./thunks";
+import { Divide } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import SkeletonCard from "./SkeletonCard";
 
 export function HomePage() {
-  // const [deltaAsPercent, setDeltaAsPercent] = useState(false);
-  // const [predictions, setPredictions] = useState<
-  //   PredictionsResponse[] | undefined
-  // >(undefined);
-
   const dispatch = useAppDispatch();
 
   const { predictions, loading, error, deltaAsDollar } = useSelector(
@@ -25,10 +23,20 @@ export function HomePage() {
 
   useEffect(() => {
     if (!predictions) {
-      dispatch(fetchPredictions())
+      dispatch(fetchPredictions());
     }
-  }, [dispatch])
-    
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log(loading);
+  }, []);
+
+  const loadingContent = [...Array(8)].map((_, i) => (
+    <Skeleton
+      key={i}
+      className="sm:col-span-1 sm:row-span-2 w-full h-44 border-slate-400"
+    ></Skeleton>
+  ));
 
   return (
     <>
@@ -60,6 +68,9 @@ export function HomePage() {
                   previous_close={data.prevClose}
                 />
               ))}
+            {loading &&
+              [...Array(8)].map((_, index) => <SkeletonCard key={index} />)}
+            {error && <p>{error}</p>}
           </div>
         </div>
       </div>
