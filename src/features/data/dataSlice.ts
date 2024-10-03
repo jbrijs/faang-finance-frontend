@@ -28,6 +28,7 @@ export const dataPage = createSlice({
     builder
       .addCase(fetchPredictionData.pending, (state) => {
         state.loading = true;
+        state.data = null;
       })
       .addCase(fetchPredictionData.fulfilled, (state, action) => {
         state.loading = false;

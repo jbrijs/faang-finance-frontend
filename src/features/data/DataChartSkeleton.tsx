@@ -1,8 +1,9 @@
+import { Skeleton } from '@/components/ui/skeleton'
 import React from 'react'
 
 const DataChartSkeleton = () => {
   return (
-    <div>DataChartSkeleton</div>
+    <Skeleton className='w-full h-full rounded'></Skeleton>
   )
 }
 

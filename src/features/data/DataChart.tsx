@@ -15,14 +15,17 @@ import {
 } from "@/components/ui/chart.tsx";
 import { formatMoney } from "@/utils";
 import { PredictionDataResponse } from "@/services/model";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Props {
   ticker: string;
   company: string;
-  data: PredictionDataResponse[];
+  data: PredictionDataResponse[] | null;
+  loading: boolean;
+  error: string | null;
 }
 
-const DataChart: React.FC<Props> = ({ ticker, company, data }) => {
+const DataChart: React.FC<Props> = ({ ticker, company, data, loading, error }) => {
   const chartConfig = {
     prediction: {
       label: "Predicted Close Price",
@@ -47,7 +50,7 @@ const DataChart: React.FC<Props> = ({ ticker, company, data }) => {
         </CardDescription>
       </CardHeader>
       <CardContent className="h-3/4">
-        <ChartContainer config={chartConfig}>
+       {data && <ChartContainer config={chartConfig}>
           <LineChart
             accessibilityLayer
             data={data}
@@ -87,7 +90,9 @@ const DataChart: React.FC<Props> = ({ ticker, company, data }) => {
               dot={true}
             />
           </LineChart>
-        </ChartContainer>
+        </ChartContainer>}
+        {loading && <Skeleton className="w-full h-48 md:h-72 lg:h-[500px] rounded"/>}
+        {error && <p>Error loading data: {error}</p>}
       </CardContent>
     </Card>
   );

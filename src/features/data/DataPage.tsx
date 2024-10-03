@@ -9,6 +9,8 @@ import { fetchPredictionData } from "./thunk";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import { setTicker } from "./dataSlice";
+import DataChartSkeleton from "./DataChartSkeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const DataPage = () => {
   const { paramTicker } = useParams();
@@ -41,6 +43,8 @@ const DataPage = () => {
         ticker={ticker || "TCKR"}
         company={(ticker && tickerToCompanyName(ticker)) || "Company Inc."}
         data={data}
+        loading={loading}
+        error={error}
       />
     </div>
   );
