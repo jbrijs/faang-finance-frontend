@@ -1,6 +1,4 @@
-import { PredictionDataResponse } from "@/services/model";
-import { Service } from "@/services/services";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import DataChart from "./DataChart";
 import { tickerToCompanyName } from "@/utils";
@@ -9,8 +7,6 @@ import { fetchPredictionData } from "./thunk";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import { setTicker } from "./dataSlice";
-import DataChartSkeleton from "./DataChartSkeleton";
-import { Skeleton } from "@/components/ui/skeleton";
 
 const DataPage = () => {
   const { paramTicker } = useParams();

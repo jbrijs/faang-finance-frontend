@@ -21,7 +21,7 @@ const SkeletonCard = () => {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col h-36 w-full justify-end">
-        <Skeleton className="h-20 w-40 rounded"/>
+        <Skeleton className="h-14 w-40 rounded"/>
       </CardContent>
     </Card>
   );
