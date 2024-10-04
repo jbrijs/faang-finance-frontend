@@ -41,12 +41,14 @@ const DataChart: React.FC<Props> = ({ ticker, company, data, loading, error }) =
     <Card className="h-3/4 w-3/4">
       <CardHeader>
         <CardTitle>{ticker} - Prediction vs Actual</CardTitle>
-        <CardDescription>
+        <CardDescription className="leading-none">
           Close price predictions compared to actual close price for {company}
         </CardDescription>
         <CardDescription>
-         {} to{" "}
-          {}
+         {data && <div className="leading-none">
+          Predictions from {data[0].timeStamp} to {data[data.length - 1].timeStamp}
+         </div>
+          }
         </CardDescription>
       </CardHeader>
       <CardContent className="h-3/4">
