@@ -190,6 +190,20 @@ const ProjectDescriptionPage = () => {
             </p>
           </CollapsibleContent>
         </Collapsible>
+        <div className="w-fit flex flex-col gap-6 pt-10 p-0">
+          <div className="w-full flex flex-row justify-start pb-0">
+            <h2 className="text-3xl text-muted-foreground font-medium text-left">
+              Future Development
+            </h2>
+          </div>
+          <p className="max-w-prose">
+            In the future, I plan to train different types of Deep Learning and
+            Machine Learning models, one for each company, to compare their
+            performance. I also aim to apply more analytics to the data and the
+            models to extract more interesting insights. Please feel free to
+            reach out with any ideas you may have for this project!
+          </p>
+        </div>
       </div>
     </div>
   );
