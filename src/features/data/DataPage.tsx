@@ -34,7 +34,7 @@ const DataPage = () => {
   }, [ticker, dispatch]);
 
   return (
-    <div className="w-full px-10 py-10 h-full flex items-center justify-center">
+    <div className="w-screen md:p-10 px-2 pt-10 h-full flex items-center justify-center">
       <DataChart
         ticker={ticker || "TCKR"}
         company={(ticker && tickerToCompanyName(ticker)) || "Company Inc."}
