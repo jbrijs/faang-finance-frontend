@@ -92,35 +92,37 @@ function navbar() {
             </SheetHeader>
             <div className="flex flex-col items-start gap-10 z-10 pt-10">
               <p
-                className="font-medium hover:cursor-default rounded px-2.5 py-1.5 active:bg-muted transition-all duration-200 ease-out"
+                className="font-medium hover:cursor-default rounded py-1.5 active:bg-muted transition-all duration-200 ease-out"
                 onClick={() => navigate("/")}
               >
                 Predictions
               </p>
 
               <p
-                className="font-medium hover:cursor-default rounded px-2.5 py-1.5 active:bg-muted transition-all duration-200 ease-out"
+                className="font-medium hover:cursor-default rounded py-1.5 active:bg-muted transition-all duration-200 ease-out"
                 onClick={handleProjectDescriptionClick}
               >
                 Case Study
               </p>
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>Prediction Data</AccordionTrigger>
+                  <AccordionContent className="flex flex-col gap-2">
+                    {Array.from(companies.keys()).map((company) => (
+                      <p
+                        className="text-base pl-1.5"
+                        key={company}
+                        onClick={() =>
+                          navigate(`/data/${companies.get(company)}`)
+                        }
+                      >
+                        {company}
+                      </p>
+                    ))}
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="item-1">
-                <AccordionTrigger>Prediction Data</AccordionTrigger>
-                <AccordionContent>
-                {Array.from(companies.keys()).map((company) => (
-                <p
-                  key={company}
-                  onClick={() => navigate(`/data/${companies.get(company)}`)}
-                >
-                  {company}
-                </p>
-              ))}
-                </AccordionContent>
-              </AccordionItem>
-             
-            </Accordion>
           </SheetContent>
         </Sheet>
         <p className="font-bold text-3xl text-nowrap">FAANG Finance</p>
