@@ -62,7 +62,6 @@ export const testChartData = [
   { prediction: 4, actual: 5, timeStamp: "2024-10-03" },
 ];
 
-
 export const formatMoney = (value: number): string => {
   return value.toLocaleString("en-US", { style: "currency", currency: "USD" });
 };
@@ -79,7 +78,7 @@ export const tickerToCompanyName = (ticker: string): string => {
   switch (ticker) {
     case "AAPL":
       return "Apple Inc.";
-    case "GOOGL":
+    case "GOOG":
       return "Alphabet Inc.";
     case "META":
       return "Meta Platforms Inc.";

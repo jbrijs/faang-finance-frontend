@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
 import homePageReducer from '../features/home/homePageSlice'
-import { dataPage } from '@/features/data/dataSlice';
 import dataPageReducer from '@/features/data/dataSlice'
 
 const store = configureStore({

@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { homePage } from "./homePageSlice";
 import { RootState } from "@/app/store";
 import { Service } from "@/services/services";
 

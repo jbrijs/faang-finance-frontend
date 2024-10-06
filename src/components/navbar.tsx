@@ -3,14 +3,12 @@ import {
   MenubarContent,
   MenubarItem,
   MenubarMenu,
-  MenubarSeparator,
   MenubarTrigger,
 } from "@/components/ui/menubar";
 
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -26,7 +24,7 @@ import {
 import { ModeToggle } from "./mode-toggle";
 import { useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
-import { HamIcon, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 
 const companies = new Map([
   ["Adobe", "ADBE"],
