@@ -44,8 +44,8 @@ const DataChart: React.FC<Props> = ({
   } satisfies ChartConfig;
 
   return (
-    <div>
-      <Card className="md:h-3/4 md:w-full h-full w-full md:p-0">
+    <div className="w-full md:w-3/4">
+      <Card className="h-full w-full md:p-0">
         <CardHeader className="p-2 pb-4 md:p-6">
           <CardTitle>{ticker} - Prediction vs Actual</CardTitle>
           <div className="hidden md:block">
