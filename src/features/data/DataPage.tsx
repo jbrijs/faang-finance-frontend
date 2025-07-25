@@ -10,25 +10,25 @@ import { setTicker } from "./dataSlice";
 
 const DataPage = () => {
   const { paramTicker } = useParams();
-  console.log('paramTicker from useParams:', paramTicker); // Add this log
+  // console.log('paramTicker from useParams:', paramTicker); // Add this log
   
   const dispatch = useAppDispatch();
   
   const { data, ticker, loading, error } = useSelector(
     (state: RootState) => state.dataPage
   );
-  console.log('Current ticker from Redux:', ticker); // Add this log
+  // console.log('Current ticker from Redux:', ticker); // Add this log
 
   useEffect(() => {
     if (paramTicker) {
-      console.log('Dispatching setTicker with paramTicker:', paramTicker); // Add this log
+      // console.log('Dispatching setTicker with paramTicker:', paramTicker); // Add this log
       dispatch(setTicker(paramTicker));
     }
   }, [paramTicker, dispatch]);
 
   useEffect(() => {
     if (ticker) {
-      console.log('Ticker exists, dispatching fetchPredictionData:', ticker); // Add this log
+      // console.log('Ticker exists, dispatching fetchPredictionData:', ticker); // Add this log
       dispatch(fetchPredictionData());
     }
   }, [ticker, dispatch]);
